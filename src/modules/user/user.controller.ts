@@ -17,6 +17,12 @@ export class UserController {
     res.send(data);
   }
 
+  @Get('/one')
+  async getOne(@Res() res: Response){
+    const data = await this.userService.testTypeOrm();
+    res.send(data);
+  }
+
   @Post('/test')
   async create(@Body() createUserDto: CreateUserDto, @Res() res: Response){
     res.send(createUserDto.name);
