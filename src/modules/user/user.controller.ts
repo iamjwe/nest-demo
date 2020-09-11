@@ -1,9 +1,10 @@
 import { Controller, Get, Post, Res, Body, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { UserService } from './user.service';
-import { CreateUserDto } from '../../pojo/dto/user.create.dto'
+import { CreateUserDto } from '../../pojo/dto/user.create.dto';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
-import { LocalAuthGuard } from '../../aop/guards/local-auth.guard'
+import { LocalAuthGuard } from '../../aop/guards/local-auth.guard';
+import { JwtAuthGuard } from '../../aop/guards/jwt-auth.guard';
 @ApiBearerAuth() // Swagger 的 JWT 验证
 @ApiTags('user')
 @Controller('/user')
@@ -30,4 +31,9 @@ export class UserController {
     res.send(createUserDto.name);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile() {
+    return 'xxx';
+  }
 }

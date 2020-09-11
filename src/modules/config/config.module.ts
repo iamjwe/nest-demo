@@ -1,15 +1,10 @@
 import { Module, Global } from '@nestjs/common';
-import { config } from '../../config/config' 
-
-const ConfigProvider = {
-  provide: 'CONFIG',
-  useValue: config
-}
+import { ConfigService } from './config.services'
 
 @Global()
 @Module({
-  providers: [ConfigProvider],
-  exports: [ConfigProvider]
+  providers: [ConfigService],
+  exports: [ConfigService]
 })
 
 export class ConfigModule {}

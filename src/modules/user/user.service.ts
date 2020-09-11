@@ -1,17 +1,18 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { User } from '../../entity/user.entity'
+import { User } from '../../entity/user.entity';
+import { ConfigService } from '../config/config.services';
+
 @Injectable()
 export class UserService {
   constructor(
-    @Inject('CONFIG') 
-    private readonly config,
+    private readonly configService: ConfigService,
     @Inject('USER_REPOSITORY')
     private readonly userRepository: Repository<User>,
   ){}
 
   async test(): Promise<string> {
-    return this.config['test']
+    return this.configService.get('test')
   }
 
   async findOne(username): Promise<User> {
