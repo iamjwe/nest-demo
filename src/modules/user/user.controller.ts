@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Res, Body } from '@nestjs/common';
+import { Controller, Get, Post, Res, Body, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { UserService } from './user.service';
 import { CreateUserDto } from '../../pojo/dto/user.create.dto'
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { LocalAuthGuard } from '../../aop/guards/local-auth.guard'
 @ApiBearerAuth() // Swagger 的 JWT 验证
 @ApiTags('user')
 @Controller('/user')
@@ -17,6 +18,7 @@ export class UserController {
     res.send(data);
   }
 
+  @UseGuards(LocalAuthGuard)
   @Get('/one')
   async getOne(@Res() res: Response){
     const data = await this.userService.testTypeOrm();

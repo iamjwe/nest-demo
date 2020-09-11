@@ -23,3 +23,8 @@ windows不支持NODE_ENV=development的设置方式，为了支持这个方式�
 
 ### 遗留问题
 - 文档不推荐多个全局模块，但是有这个需求，所以在此我保留全局模块，但注意多个全局模块之间的依赖关系。
+
+## 0911
+### "@nestjs/swagger/plugin" plugin could not be found!
+- yarn global upgrade upgrade @nestjs/cli
+- nest update

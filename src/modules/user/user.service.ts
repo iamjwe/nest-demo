@@ -14,6 +14,11 @@ export class UserService {
     return this.config['test']
   }
 
+  async findOne(username): Promise<User> {
+    const user = await this.userRepository.findOne(username);
+    return user;
+  }
+
   async testTypeOrm(): Promise<User> {
     const user = await this.userRepository.findOne(1);
     return user;
