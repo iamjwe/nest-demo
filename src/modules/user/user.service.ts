@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from '../../entity/user.entity';
 import { ConfigService } from '../config/config.services';
+import { MyLogger } from '../logger/my-logger.service';
 
 @Injectable()
 export class UserService {
@@ -9,10 +10,18 @@ export class UserService {
     private readonly configService: ConfigService,
     @Inject('USER_REPOSITORY')
     private readonly userRepository: Repository<User>,
-  ){}
+    private myLogger: MyLogger
+  ){
+    this.myLogger.setContext('userServices');
+  }
 
-  async test(): Promise<string> {
+  async configData(): Promise<string> {
     return this.configService.get('test')
+  }
+
+  async logTest(): Promise<string> {
+    this.myLogger.error('log test success', 'error in logTest');
+    return 'log test'
   }
 
   async findOne(username): Promise<User> {

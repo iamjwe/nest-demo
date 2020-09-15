@@ -1,10 +1,18 @@
+import logConfig from './logger.config';
+
+const commonConfig = {
+ 
+}
+
 const devConfig = {
-  test: 'aaa'
+  test: 'aaa',
+  logConfig 
 }
 const prodConfig = {
-  test: 'bbb'
+  test: 'bbb',
+  logConfig
 }
 
 
-export const config = process.env.NODE_ENV === 'develop'? devConfig: prodConfig;      
+export const config = {...commonConfig,...(process.env.NODE_ENV === 'develop'? devConfig: prodConfig)};      
       

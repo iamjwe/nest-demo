@@ -6,7 +6,8 @@ import { LocalStrategy } from './strategy/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './strategy/jwt/constants';
 import { AuthController } from './auth.controller';
-import { JwtStrategy } from './strategy/jwt/jwt.strategy'
+import { JwtStrategy } from './strategy/jwt/jwt.strategy';
+import { RbacStrategy } from './strategy/rbac/rbac.strategy';
 
 @Module({
   imports: [
@@ -16,8 +17,8 @@ import { JwtStrategy } from './strategy/jwt/jwt.strategy'
     secret: jwtConstants.secret,
     signOptions: { expiresIn: '60s' },
   }),],
-  providers: [AuthService,LocalStrategy,JwtStrategy],
-  exports: [AuthService],
+  providers: [AuthService,LocalStrategy,JwtStrategy,RbacStrategy],
+  exports: [AuthService,RbacStrategy],
   controllers: [AuthController]
 })
 export class AuthModule {}
