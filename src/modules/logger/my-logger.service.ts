@@ -20,6 +20,7 @@ export class MyLogger extends Logger {
   }
 
   logFile(message: string) {
+    this.log('\n' +message);
     writeFileSyncAdd(this.logFileName, `${this.logHeaderFn({ logType: 'log' })}\n${message}\n`);
   }
 
@@ -28,6 +29,7 @@ export class MyLogger extends Logger {
   }
 
   errorFile(message: string, trace: string) {
+    this.error('\n' +message,trace);
     writeFileSyncAdd(this.logFileName, `${this.logHeaderFn({ logType: 'error' })}\n${message}\n`);
   }
 
@@ -36,6 +38,7 @@ export class MyLogger extends Logger {
   }
 
   warnFile(message: string) {
+    this.warn('\n' +message);
     writeFileSyncAdd(this.logFileName, `${this.logHeaderFn({ logType: 'warn' })}\n${message}\n`);
   }
 
@@ -44,6 +47,7 @@ export class MyLogger extends Logger {
   }
 
   debugFile(message: string) {
+    this.debug('\n' +message);
     writeFileSyncAdd(this.logFileName, `${this.logHeaderFn({ logType: 'debug' })}\n${message}\n`);
   }
 
@@ -52,6 +56,7 @@ export class MyLogger extends Logger {
   }
 
   verboseFile(message: string) {
+    this.verbose('\n' +message);
     writeFileSyncAdd(this.logFileName, `${this.logHeaderFn({ logType: 'verbose' })}\n${message}\n`);
   }
 

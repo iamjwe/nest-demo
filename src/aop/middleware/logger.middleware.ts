@@ -18,12 +18,10 @@ export function logger(req: Request, res: Response, next: () => any) {
   `;
   // 根据状态码，进行日志类型区分
   if (code >= 500) {
-    logger.error(logFormat,'');
     logger.errorFile(logFormat,'');
   } else if (code >= 400) {
-    logger.warn(logFormat);
     logger.warnFile(logFormat);
   } else {
-    logger.log(logFormat);
+    logger.logFile(logFormat);
   }
 }

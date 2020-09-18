@@ -17,7 +17,6 @@ export function readJsonFileSync(path: string) {
 
 // 向一个文件中追加内容
 export function writeFileSyncAdd(path, content) {
-  console.log(path, content);
   try {
     fs.writeFileSync(path, content, { flag: 'a' })
   } catch (e) {
